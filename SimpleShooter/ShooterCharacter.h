@@ -29,5 +29,6 @@ public:
 private:
 
 	void MoveForward(float AxisValue);
+	void MoveLeft(float AxisValue);
 	// void LookUp(float AxisValue);
 };

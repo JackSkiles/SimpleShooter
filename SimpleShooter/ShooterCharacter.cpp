@@ -32,11 +32,19 @@ void AShooterCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCo
 
 	PlayerInputComponent->BindAxis(TEXT("MoveForward"), this, &AShooterCharacter::MoveForward);
 	PlayerInputComponent->BindAxis(TEXT("LookUP"), this, &APawn::AddControllerPitchInput);
+	PlayerInputComponent->BindAxis(TEXT("MoveLeft"), this, &AShooterCharacter::MoveLeft);
+	PlayerInputComponent->BindAxis(TEXT("LookLeft"), this, &APawn::AddControllerYawInput);
+	PlayerInputComponent->BindAction(TEXT("Jump"), EInputEvent::IE_Pressed, this, &ACharacter::Jump);
 }
 
 void AShooterCharacter::MoveForward(float AxisValue) 
 {
 	AddMovementInput(GetActorForwardVector() * AxisValue);
+}
+
+void AShooterCharacter::MoveLeft(float AxisValue) 
+{
+	AddMovementInput(GetActorRightVector() * AxisValue);
 }
 
 // void AShooterCharacter::LookUp(float AxisValue) 
