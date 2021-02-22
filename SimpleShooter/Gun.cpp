@@ -21,20 +21,28 @@ AGun::AGun()
 
 void AGun::PullTrigger() 
 {
-	FVector PlayerViewPointLocation;
-	FRotator PlayerViewPointRotation;
 
 	UE_LOG(LogTemp, Warning, TEXT("You've been shot!"));
 	UGameplayStatics::SpawnEmitterAttached(MuzzleFlash, Mesh, TEXT("MuzzleFlashSocket"));
+
 
 	APawn* OwnerPawn = Cast<APawn>(GetOwner());
 	if(!OwnerPawn) {return;}
 	AController* OwnerController = OwnerPawn->GetController();
 	if(!OwnerController) {return;}
 
-	OwnerController->GetPlayerViewPoint(PlayerViewPointLocation, PlayerViewPointRotation);
+	FVector Location;
+	FRotator Rotation;
+	OwnerController->GetPlayerViewPoint(Location, Rotation);
 
-	DrawDebugCamera(GetWorld(), PlayerViewPointLocation, PlayerViewPointRotation, 90, 2, FColor::Red, true);
+	FVector End = Location + Rotation.Vector() * MaxRange;
+	// TODO: LineTrace
+
+	FHitResult Hit;
+	bool bSuccess = GetWorld()->LineTraceSingleByChannel(Hit, Location, End, ECollisionChannel::ECC_GameTraceChannel1);
+	if(bSuccess){
+		DrawDebugPoint(GetWorld(), Hit.Location, 20, FColor::Red, true);
+	}
 }
 
 // Called when the game starts or when spawned
