@@ -25,9 +25,9 @@ public:
 
 private:
 	UPROPERTY(VisibleAnywhere)
-	USceneComponent* RootComponent;
+	USceneComponent* Root;
 
 	UPROPERTY(VisibleAnywhere)
-	UStaticMeshComponent* Mesh;
+	USkeletalMeshComponent* Mesh;
 
 };
