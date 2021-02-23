@@ -27,9 +27,9 @@ void AGun::PullTrigger()
 
 
 	APawn* OwnerPawn = Cast<APawn>(GetOwner());
-	if(!OwnerPawn) {return;}
+	if(OwnerPawn == nullptr) {return;}
 	AController* OwnerController = OwnerPawn->GetController();
-	if(!OwnerController) {return;}
+	if(OwnerController == nullptr) {return;}
 
 	FVector Location;
 	FRotator Rotation;
@@ -44,6 +44,12 @@ void AGun::PullTrigger()
 		FVector ShotDirection = -Rotation.Vector();
 		// DrawDebugPoint(GetWorld(), Hit.Location, 20, FColor::Red, true);
 		UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), HitFlash, Hit.Location, ShotDirection.Rotation());
+		FPointDamageEvent DamageEvent(Damage, Hit, ShotDirection, nullptr);
+		AActor* HitActor = Hit.GetActor();
+		if(HitActor != nullptr)
+		{
+			TakeDamage(Damage, DamageEvent, OwnerController, this);
+		}
 	}
 }
 

@@ -39,5 +39,8 @@ private:
 	UParticleSystem* HitFlash;
 
 	UPROPERTY(EditAnywhere)
-	float MaxRange = 1000;;
+	float MaxRange = 1000;
+
+	UPROPERTY(EditAnywhere)
+	float Damage = 10;
 };
