@@ -48,7 +48,7 @@ void AGun::PullTrigger()
 		AActor* HitActor = Hit.GetActor();
 		if(HitActor != nullptr)
 		{
-			TakeDamage(Damage, DamageEvent, OwnerController, this);
+			HitActor->TakeDamage(Damage, DamageEvent, OwnerController, this);
 		}
 	}
 }
