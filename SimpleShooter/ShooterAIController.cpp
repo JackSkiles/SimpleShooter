@@ -20,4 +20,11 @@ void AShooterAIController::Tick(float DeltaSeconds)
     Super::Tick(DeltaSeconds);
     APawn* PlayerPawn = UGameplayStatics::GetPlayerPawn(GetWorld(), 0);
     MoveToActor(PlayerPawn, 200);
+
+    // If LineOfSight
+        // MoveTo
+        //SetFocus
+    // Else
+        //ClearFocus
+        //StopMovement
 }
