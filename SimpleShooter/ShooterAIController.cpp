@@ -29,7 +29,6 @@ void AShooterAIController::Tick(float DeltaSeconds)
         APawn* PlayerPawn = UGameplayStatics::GetPlayerPawn(GetWorld(), 0);
         if(LineOfSightTo(PlayerPawn)){
             GetBlackboardComponent() ->  SetValueAsVector(TEXT("PlayerLocation"), PlayerPawn->GetActorLocation());
-            GetBlackboardComponent() ->  SetValueAsVector(TEXT("StartLocation"), GetPawn()->GetActorLocation());
             GetBlackboardComponent() ->  SetValueAsVector(TEXT("LastKnownPlayerLocation"), PlayerPawn->GetActorLocation());
             // Set player location
             // Set Lastknowplayerlocation
