@@ -4,7 +4,7 @@
 #include "KillEmAllGameMode.h"
 #include "EngineUtils.h"
 #include "GameFramework/Controller.h"
-
+#include "ShooterAIController.h"
 
 void AKillEmAllGameMode::PawnKilled(APawn* PawnKilled) 
 {
@@ -16,12 +16,21 @@ void AKillEmAllGameMode::PawnKilled(APawn* PawnKilled)
        EndGame(false);
     }
 
+    for(AShooterAIController* Controller : TActorRange<AShooterAIController>(GetWorld()))
+    {
+        if (!Controller->IsDead())
+        {
+            return;
+        }
+        
+    }
+    EndGame(true);
     // For loop over shooterAI in world:
         // Is not dead?
             // return
         
     // End game
-    
+
     // UE_LOG(LogTemp, Warning, TEXT("A pawn was killed!"));
 }
 
