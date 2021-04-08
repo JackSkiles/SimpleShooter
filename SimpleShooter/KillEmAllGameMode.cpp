@@ -15,6 +15,13 @@ void AKillEmAllGameMode::PawnKilled(APawn* PawnKilled)
     {
        EndGame(false);
     }
+
+    // For loop over shooterAI in world:
+        // Is not dead?
+            // return
+        
+    // End game
+    
     // UE_LOG(LogTemp, Warning, TEXT("A pawn was killed!"));
 }
 

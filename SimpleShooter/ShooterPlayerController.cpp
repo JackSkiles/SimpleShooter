@@ -8,7 +8,18 @@
 void AShooterPlayerController::GameHasEnded(class AActor* EndGameFocus, bool bIsWinner) 
 {
     Super::GameHasEnded(EndGameFocus, bIsWinner);
+    UUserWidget* WinScreen = CreateWidget(this, WinScreenClass);
+    if( bIsWinner)
+    {
+        if (WinScreen != nullptr)
+        {
+            WinScreen->AddToViewport();
+        }
+    }
+    else
+    {
 
+    }
     UUserWidget* LoseScreen = CreateWidget(this, LoseScreenClass);
     if (LoseScreen != nullptr)
     {
